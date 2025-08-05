@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_flutter_2/tugas_flutter_2/start.dart';
-import 'package:tugas_flutter_2/tugas_flutter_2/tugas3dan4/tugas3.dart';
+// import 'package:tugas_flutter_2/tugas_flutter_2/start.dart';
+// import 'package:tugas_flutter_2/tugas_flutter_2/tugas3dan4/tugas3.dart';
+import 'package:tugas_flutter_2/tugas_flutter_2/tugas3dan4/tugas4.dart';
 
 void main() {
   runApp(const MyApp());

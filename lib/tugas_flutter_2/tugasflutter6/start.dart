@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
 
 class TugasFlutter6 extends StatefulWidget {
   const TugasFlutter6({super.key});
@@ -131,8 +132,19 @@ class _TugasFlutter6State extends State<TugasFlutter6> {
                         //Error dan sukses menggunakan ScaffoldMessenger dan formKey
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Form Validasi Berhasil")),
+                            SnackBar(
+                              content: Text("login Berhasil"),
+                              duration: Duration(seconds: 3),
+                            ),
                           );
+                          Future.delayed(const Duration(seconds: 3), () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TugasFlutter7(),
+                              ),
+                            );
+                          });
                         } else {
                           showDialog(
                             context: context,

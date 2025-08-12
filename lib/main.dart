@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter_2/tugas_flutter_2/tugasflutter6/start.dart';
+// import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,12 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: TugasFlutter6(),
+      // home: TugasFlutter7(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const TugasFlutter6(),
+        // TugasFlutter7.id: (context) => const TugasFlutter7(),
+      },
     );
   }
 }

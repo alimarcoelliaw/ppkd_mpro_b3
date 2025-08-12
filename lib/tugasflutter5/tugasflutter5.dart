@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tugas_flutter_2/tugas_flutter_2/tugas3dan4/tugas3.dart';
 
 // class Flutter5 extends StatefulWidget {
 //   const Flutter5({super.key});
@@ -17,7 +18,7 @@ import 'package:flutter/material.dart';
 //     return Scaffold(
 //       appBar: AppBar(
 //         title: Text(
-//           "tugas flutter 5", 
+//           "tugas flutter 5",
 //           style: TextStyle(
 //             fontSize: 18,
 //             color: const Color.fromARGB(255, 161, 204, 152)
@@ -29,9 +30,8 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
-
 class Flutter5 extends StatefulWidget {
-
+  const Flutter5({super.key});
 
   @override
   State<Flutter5> createState() => _Flutter5State();
@@ -62,15 +62,25 @@ class _Flutter5State extends State<Flutter5> {
       ),
       body: Stack(
         children: [
-          Image.asset("assets/images/seni_biru.jpg", fit: BoxFit.cover, height: double.infinity, width: double.infinity),
-          Column( 
+          Image.asset(
+            "assets/images/seni_biru.jpg",
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          Column(
             children: [
               Center(),
-              Text("1. Elevated Button", style: TextStyle(fontSize: 16,color: Colors.white)),
+              Text(
+                "1. Elevated Button",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
               SizedBox(height: 8),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all<Color>(const Color.fromARGB(255, 7, 205, 255)),
+                  backgroundColor: WidgetStateProperty.all<Color>(
+                    const Color.fromARGB(255, 7, 205, 255),
+                  ),
                 ),
                 onPressed: () {
                   setState(() {
@@ -88,7 +98,10 @@ class _Flutter5State extends State<Flutter5> {
                 ),
               ),
               SizedBox(height: 8),
-              Text("2. IconButton", style: TextStyle(fontSize: 16,color: Colors.white)),
+              Text(
+                "2. IconButton",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
               SizedBox(height: 8),
               Container(
                 margin: EdgeInsets.all(8),
@@ -97,7 +110,9 @@ class _Flutter5State extends State<Flutter5> {
                 width: 80,
                 child: IconButton(
                   icon: const Icon(Icons.favorite),
-                  color: warnaDisukai ? const Color.fromARGB(255, 236, 228, 228) : const Color.fromARGB(255, 204, 195, 195),
+                  color: warnaDisukai
+                      ? const Color.fromARGB(255, 236, 228, 228)
+                      : const Color.fromARGB(255, 204, 195, 195),
                   iconSize: 40,
                   onPressed: () {
                     setState(() {
@@ -119,7 +134,10 @@ class _Flutter5State extends State<Flutter5> {
                   ),
                 ),
               SizedBox(height: 8),
-              Text("3. TextButton", style: TextStyle(fontSize: 16,color: Colors.white)),
+              Text(
+                "3. TextButton",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
               TextButton(
                 onPressed: () {
                   setState(() {
@@ -132,11 +150,14 @@ class _Flutter5State extends State<Flutter5> {
                   tampilkanNamaTextButton
                       ? "selamat datang bapak ibu"
                       : "TextButton - Tampilkan",
-                  style: TextStyle(fontSize: 16,color: Colors.white),
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
               // SizedBox(height: 8),
-              Text("5. InkWell", style: TextStyle(fontSize: 16,color: Colors.white)),
+              Text(
+                "5. InkWell",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
               SizedBox(height: 8),
               InkWell(
                 onTap: () {
@@ -169,7 +190,10 @@ class _Flutter5State extends State<Flutter5> {
                 ),
               ),
               SizedBox(height: 8),
-              Text("6. GestureDetector", style: TextStyle(fontSize: 16,color: Colors.white)),
+              Text(
+                "6. GestureDetector",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
               SizedBox(height: 8),
               GestureDetector(
                 onDoubleTap: () {
@@ -195,9 +219,32 @@ class _Flutter5State extends State<Flutter5> {
                   child: const Center(
                     child: Text(
                       "Tekan Aku",
-                      style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 255, 255, 255)),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
                     ),
                   ),
+                ),
+              ),
+              SizedBox(height: 8),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(
+                    const Color.fromARGB(255, 7, 205, 255),
+                  ),
+                ),
+                onPressed: () {
+                  Future.delayed(const Duration(seconds: 3), () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Tugas3Flutter()),
+                    );
+                  });
+                },
+                child: Text(
+                  tampilkan ? "lanjut" : "ElevatedButton - masuk halaman 3",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ],

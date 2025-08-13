@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter_2/Tugas_flutter_7/switch.dart';
 import 'package:tugas_flutter_2/Tugas_flutter_7/tanggal.dart';
+import 'package:tugas_flutter_2/tugas_flutter_10/home.a.dart';
 import 'package:tugas_flutter_2/tugas_flutter_2/pushnavigator/push.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/aboutapp.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/checkbox.dart';
@@ -29,6 +30,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
     Listviewtugas1(),
     Listviewmap(),
     Model1(),
+    HomeFirst(),
   ];
 
   int _selectedIndex = 0;
@@ -121,6 +123,12 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
               title: Text("Model Produk"),
               onTap: () {
                 onItemTap(7);
+              },
+            ),
+            ListTile(
+              title: Text("tugas_flutter_10"),
+              onTap: () {
+                onItemTap(8);
               },
             ),
           ],

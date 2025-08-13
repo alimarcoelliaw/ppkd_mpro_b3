@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tugas_flutter_2/tugas_flutter_2/tugasflutter6/start.dart';
+import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
 // import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
 
 void main() {
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const TugasFlutter6(),
+
+        '/home': (context) => TugasFlutter7(),
         // TugasFlutter7.id: (context) => const TugasFlutter7(),
       },
     );

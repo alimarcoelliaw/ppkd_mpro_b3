@@ -96,7 +96,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 12),
           Text("Nama Lengkap:"),
-          TextFormEmail(
+          TextFormConst(
             hintText: "Masukkan Nama Lengkap Anda",
             controller: nameController,
             validator: _validateName,
@@ -104,7 +104,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 6),
           Text("Email:"),
-          TextFormEmail(
+          TextFormConst(
             hintText: "Masukkan Email",
             controller: emailController,
             validator: _validateEmail,
@@ -112,7 +112,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 6),
           Text("No. Telp:"),
-          TextFormEmail(
+          TextFormConst(
             hintText: "Masukkan No. Telp",
             controller: phoneController,
             validator: _validatePhone,
@@ -123,7 +123,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 6),
           Text("Domisili Kota:"),
-          TextFormEmail(
+          TextFormConst(
             hintText: "Masukkan Domisili Kota Anda",
             controller: kotaDomilisiController,
             validator: _validateDomisili,

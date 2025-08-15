@@ -11,9 +11,12 @@ class Registerscreen extends StatefulWidget {
 
 class _RegisterscreenState extends State<Registerscreen> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController namecontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   bool isLoading = false;
+
+  get id => null;
   @override
   void initState() {
     super.initState();
@@ -23,6 +26,7 @@ class _RegisterscreenState extends State<Registerscreen> {
   void registerUser() async {
     isLoading = true;
     setState(() {});
+    final name = namecontroller.text.trim();
     final email = emailcontroller.text.trim();
     final password = passwordcontroller.text.trim();
     // final name = nameController.text.trim();
@@ -36,7 +40,7 @@ class _RegisterscreenState extends State<Registerscreen> {
 
       return;
     }
-    final user = User(email: email, password: password);
+    final user = User(id: id, email: email, password: password, name: name);
     await DbHelper.registerUser(user);
     Future.delayed(const Duration(seconds: 1)).then((value) {
       isLoading = false;

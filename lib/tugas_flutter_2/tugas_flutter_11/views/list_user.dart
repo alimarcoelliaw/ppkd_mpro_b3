@@ -22,6 +22,8 @@ class _ListUserScreenState extends State<ListUserScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  get id => null;
+
   Future<void> getUser() async {
     final dataUser = await DbHelper.getAllUsers();
     print(dataUser);
@@ -36,9 +38,9 @@ class _ListUserScreenState extends State<ListUserScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TextFormEmail(hintText: "Nama", controller: nameController),
-            TextFormEmail(hintText: "Email", controller: emailController),
-            TextFormEmail(hintText: "Password", controller: passwordController),
+            TextFormConst(hintText: "Nama", controller: nameController),
+            TextFormConst(hintText: "Email", controller: emailController),
+            TextFormConst(hintText: "Password", controller: passwordController),
             ElevatedButton(
               onPressed: () async {
                 final email = emailController.text.trim();
@@ -55,7 +57,12 @@ class _ListUserScreenState extends State<ListUserScreen> {
 
                   return;
                 }
-                final user = User(email: email, password: password);
+                final user = User(
+                  id: id,
+                  email: email,
+                  password: password,
+                  name: name,
+                );
                 await DbHelper.registerUser(user);
                 Future.delayed(const Duration(seconds: 1)).then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -74,8 +81,82 @@ class _ListUserScreenState extends State<ListUserScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final dataUserLogin = users[index];
                 return ListTile(
-                  title: Text(dataUserLogin.email),
-                  subtitle: Text(dataUserLogin.password),
+                  title: Text(dataUserLogin.name),
+                  subtitle: Column(
+                    children: [
+                      Text(dataUserLogin.email),
+                      Text(dataUserLogin.password),
+                    ],
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          ///
+                          // DbHelper.updateUser();
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Edit Data'),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextFormConst(
+                                    controller: nameController
+                                      ..text = dataUserLogin.name,
+                                    hintText: 'Nama',
+                                  ),
+                                  SizedBox(height: 12),
+                                  TextFormConst(
+                                    controller: emailController
+                                      ..text = dataUserLogin.email,
+                                    hintText: 'Email',
+                                  ),
+                                  SizedBox(height: 12),
+
+                                  TextFormConst(
+                                    controller: passwordController
+                                      ..text = dataUserLogin.password,
+                                    hintText: 'Password',
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    final dataUser = User(
+                                      id: dataUserLogin.id!,
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      name: nameController.text.trim(),
+                                    );
+                                    DbHelper.updateUser(dataUser);
+                                    getUser();
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Simpan'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text('Batal'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
+                      IconButton(
+                        onPressed: () async {
+                          ///
+                          await DbHelper.deleteUser(dataUserLogin.id!);
+                          getUser();
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

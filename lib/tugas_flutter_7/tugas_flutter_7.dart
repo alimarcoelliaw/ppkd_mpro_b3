@@ -3,18 +3,20 @@ import 'package:tugas_flutter_2/Tugas_flutter_7/switch.dart';
 import 'package:tugas_flutter_2/Tugas_flutter_7/tanggal.dart';
 import 'package:tugas_flutter_2/tugas_flutter_10/home.a.dart';
 import 'package:tugas_flutter_2/tugas_flutter_2/pushnavigator/push.dart';
+import 'package:tugas_flutter_2/tugas_flutter_2/tugas_flutter_11/views/list_user.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/aboutapp.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/checkbox.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/dashboard.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/dropdown.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/jam.dart';
+import 'package:tugas_flutter_2/tugas_flutter_7/logout.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_9/listviewmap.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_9/modelproduk.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_9/produk_model.dart';
 
 class TugasFlutter7 extends StatefulWidget {
   const TugasFlutter7({super.key});
-
+  static const id = "/main";
   @override
   State<TugasFlutter7> createState() => _TugasFlutter7State();
 }
@@ -31,16 +33,15 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
     Listviewmap(),
     Model1(),
     HomeFirst(),
+    ListUserScreen(),
   ];
 
   int _selectedIndex = 0;
+
   static const List<Widget> _widgetOptionsNav = <Widget>[
     DashBoard(),
-    // Text(
-    //   "aplikasi altarfagasi apliakasi yang bergerak dibidang travel dan bussines  yang bergerak dibidang import dan export ,"
-    //   " tunggu apalagi segera ikuti aplikasi kami dengan promo menarik dan harga yang terjangkau",
-    // ),
     AboutApp(),
+    LogoutApp(),
   ];
 
   void onItemTap(int index) {
@@ -73,7 +74,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
             ? _widgetOptions[_selectedIndexDrawer]
             : _widgetOptionsNav[_selectedIndex],
       ),
-      appBar: AppBar(title: Text("TugasFlutter7")),
+      appBar: AppBar(title: Text("investasi barang altarfagasi")),
       drawer: Drawer(
         child: ListView(
           children: [
@@ -131,17 +132,20 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
                 onItemTap(8);
               },
             ),
+            ListTile(
+              title: Text("List User"),
+              onTap: () {
+                onItemTap(9);
+              },
+            ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            // activeIcon: Icon(Icons.abc_outlined),
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.business), label: 'About'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout'),
         ],
         currentIndex: _selectedIndex,
         onTap: (index) {

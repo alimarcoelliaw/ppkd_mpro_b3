@@ -28,7 +28,12 @@ class _HomeFirstState extends State<HomeFirst> {
   }
 
   String? _validateName(String? value) {
+    print("name");
+    print(value);
     if (value == null || value.isEmpty) {
+      return 'Nama tidak boleh kosong';
+    }
+    if (value == "") {
       return 'Nama tidak boleh kosong';
     }
     if (value.length < 3) {
@@ -39,7 +44,7 @@ class _HomeFirstState extends State<HomeFirst> {
 
   String? _validatePhone(String? value) {
     if (value == null || value.isEmpty) {
-      return null;
+      return 'Nomor telepon tidak boleh kosong';
     }
 
     // Jika diisi, harus berupa angka
@@ -91,7 +96,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 12),
           Text("Nama Lengkap:"),
-          TextFormName(
+          TextFormEmail(
             hintText: "Masukkan Nama Lengkap Anda",
             controller: nameController,
             validator: _validateName,
@@ -107,7 +112,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 6),
           Text("No. Telp:"),
-          TextFormPhone(
+          TextFormEmail(
             hintText: "Masukkan No. Telp",
             controller: phoneController,
             validator: _validatePhone,
@@ -118,7 +123,7 @@ class _HomeFirstState extends State<HomeFirst> {
           ),
           SizedBox(height: 6),
           Text("Domisili Kota:"),
-          TextFormDomisiliKota(
+          TextFormEmail(
             hintText: "Masukkan Domisili Kota Anda",
             controller: kotaDomilisiController,
             validator: _validateDomisili,

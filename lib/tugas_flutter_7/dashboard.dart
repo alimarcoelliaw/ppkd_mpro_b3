@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({super.key});
+  static const id = "/dashboard";
 
   @override
   Widget build(BuildContext context) {

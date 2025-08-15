@@ -1,24 +1,51 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:tugas_flutter_2/tugas_flutter_2/tugas_flutter_11/views/registerscreen.dart';
-import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
+import 'package:tugas_flutter_2/tugas_flutter_2/tugas_flutter_11/model/user.dart';
+import 'package:tugas_flutter_2/tugas_flutter_2/tugas_flutter_11/sqflite/Db.helper.dart';
 
-class TugasFlutter6 extends StatefulWidget {
-  const TugasFlutter6({super.key});
-  static const id = "/loginscreen";
+class Registerscreen extends StatefulWidget {
+  const Registerscreen({super.key});
+  static const id = "/register";
   @override
-  State<TugasFlutter6> createState() => _TugasFlutter6State();
+  State<Registerscreen> createState() => _RegisterscreenState();
 }
 
-class _TugasFlutter6State extends State<TugasFlutter6> {
+class _RegisterscreenState extends State<Registerscreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController passwwordcontroller = TextEditingController();
+  final TextEditingController passwordcontroller = TextEditingController();
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
     // Inisialisasi controller atau variabel lainnya jika diperlukan
+  }
+
+  void registerUser() async {
+    isLoading = true;
+    setState(() {});
+    final email = emailcontroller.text.trim();
+    final password = passwordcontroller.text.trim();
+    // final name = nameController.text.trim();
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Email, Password, dan Nama tidak boleh kosong"),
+        ),
+      );
+      isLoading = false;
+
+      return;
+    }
+    final user = User(email: email, password: password);
+    await DbHelper.registerUser(user);
+    Future.delayed(const Duration(seconds: 1)).then((value) {
+      isLoading = false;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
+    });
+    setState(() {});
+    isLoading = false;
   }
 
   @override
@@ -63,11 +90,7 @@ class _TugasFlutter6State extends State<TugasFlutter6> {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Welcome back please',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                  Text(
-                    'sign in again',
+                    'Register',
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                 ],
@@ -107,7 +130,7 @@ class _TugasFlutter6State extends State<TugasFlutter6> {
                     ),
                     SizedBox(height: 8),
                     TextFormField(
-                      controller: passwwordcontroller,
+                      controller: passwordcontroller,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
@@ -129,72 +152,97 @@ class _TugasFlutter6State extends State<TugasFlutter6> {
                       },
                     ),
                     SizedBox(height: 32),
-                    ElevatedButton(
-                      onPressed: () {
-                        //Error dan sukses menggunakan ScaffoldMessenger dan formKey
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("login Berhasil"),
-                              duration: Duration(seconds: 3),
-                            ),
-                          );
-                          Future.delayed(const Duration(seconds: 3), () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => TugasFlutter7(),
-                              ),
-                            );
-                          });
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text("Email anda tidak sesuai"),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text("Silakan Masukkan email yang valid"),
-                                    SizedBox(height: 20),
-                                    Lottie.asset(
-                                      'assets/images/animations/error.json',
-                                      width: 90,
-                                      height: 100,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton(
-                                    child: Text("Batal"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: Text("Ok, Siap"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(300, 60),
-                      ),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00224F),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     //Error dan sukses menggunakan ScaffoldMessenger dan formKey
+                    //     if (_formKey.currentState!.validate()) {
+                    //       ScaffoldMessenger.of(context).showSnackBar(
+                    //         SnackBar(
+                    //           content: Text("login Berhasil"),
+                    //           duration: Duration(seconds: 3),
+                    //         ),
+                    //       );
+                    //       Future.delayed(const Duration(seconds: 3), () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) => TugasFlutter7(),
+                    //           ),
+                    //         );
+                    //       });
+                    //     } else {
+                    //       showDialog(
+                    //         context: context,
+                    //         builder: (BuildContext context) {
+                    //           return AlertDialog(
+                    //             title: Text("Email anda tidak sesuai"),
+                    //             content: Column(
+                    //               mainAxisSize: MainAxisSize.min,
+                    //               children: [
+                    //                 Text("Silakan Masukkan email yang valid"),
+                    //                 SizedBox(height: 20),
+                    //                 Lottie.asset(
+                    //                   'assets/images/animations/error.json',
+                    //                   width: 90,
+                    //                   height: 100,
+                    //                   fit: BoxFit.cover,
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //             actions: [
+                    //               TextButton(
+                    //                 child: Text("Batal"),
+                    //                 onPressed: () {
+                    //                   Navigator.of(context).pop();
+                    //                 },
+                    //               ),
+                    //               TextButton(
+                    //                 child: Text("Ok, Siap"),
+                    //                 onPressed: () {
+                    //                   Navigator.of(context).pop();
+                    //                 },
+                    //               ),
+                    //             ],
+                    //           );
+                    //         },
+                    //       );
+                    //     }
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     minimumSize: Size(300, 60),
+                    //   ),
+                    //   child: Text(
+                    //     "Login",
+                    //     style: TextStyle(
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.bold,
+                    //       color: Color(0xFF00224F),
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 56,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          registerUser();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
                         ),
+                        child: isLoading
+                            ? CircularProgressIndicator()
+                            : Text(
+                                "Daftar",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
                       ),
                     ),
                   ],
@@ -263,28 +311,19 @@ class _TugasFlutter6State extends State<TugasFlutter6> {
                   onTap: () {
                     print('Navigasi ke halaman daftar');
                   },
-                  child: Text.rich(
+                  child: const Text.rich(
                     TextSpan(
                       children: [
-                        const TextSpan(
+                        TextSpan(
                           text: 'Already have an account? ',
                           style: TextStyle(color: Colors.grey),
                         ),
                         TextSpan(
-                          text: 'Sign up',
-                          style: const TextStyle(
+                          text: 'Sign In',
+                          style: TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Registerscreen(),
-                                ),
-                              );
-                            },
                         ),
                       ],
                     ),

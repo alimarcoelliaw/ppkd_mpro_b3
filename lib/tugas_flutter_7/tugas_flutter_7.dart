@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tugas_flutter_2/Tugas_flutter_7/switch.dart';
 import 'package:tugas_flutter_2/Tugas_flutter_7/tanggal.dart';
 import 'package:tugas_flutter_2/tugas_flutter_10/home.a.dart';
+import 'package:tugas_flutter_2/tugas_flutter_14/view/get_api_post_user.dart';
 import 'package:tugas_flutter_2/tugas_flutter_2/pushnavigator/push.dart';
 import 'package:tugas_flutter_2/tugas_flutter_2/tugas_flutter_11/views/list_user.dart';
 import 'package:tugas_flutter_2/tugas_flutter_7/aboutapp.dart';
@@ -34,6 +35,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
     Model1(),
     HomeFirst(),
     ListUserScreen(),
+    PostUserAPI(),
   ];
 
   int _selectedIndex = 0;
@@ -136,6 +138,12 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
               title: Text("List User"),
               onTap: () {
                 onItemTap(9);
+              },
+            ),
+            ListTile(
+              title: Text("Post User API"),
+              onTap: () {
+                onItemTap(10);
               },
             ),
           ],

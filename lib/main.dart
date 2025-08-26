@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tugas_flutter_2/tugas_flutter_2/tugas_flutter_11/views/splashscreen.dart';
-import 'package:tugas_flutter_2/tugas_flutter_2/tugasflutter6/start.dart';
+import 'package:tugas_flutter_2/tugas_flutter_14/view/get_api_post_user.dart';
 // import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
 // import 'package:tugas_flutter_2/tugas_flutter_7/tugas_flutter_7.dart';
 
@@ -34,17 +33,17 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      // home: TugasFlutter7(),
-      initialRoute: Day16SplashScreen.id,
-      routes: {
-        '/loginscreen': (context) => const TugasFlutter6(),
-        Day16SplashScreen.id: (context) => const Day16SplashScreen(),
+      home: PostUserAPI(),
+      // initialRoute: Day16SplashScreen.id,
+      // routes: {
+      //   '/loginscreen': (context) => const TugasFlutter6(),
+      //   Day16SplashScreen.id: (context) => const Day16SplashScreen(),
 
-        // '/': (context) => const TugasFlutter6(),
+      //   // '/': (context) => const TugasFlutter6(),
 
-        // '/home': (context) => TugasFlutter7(),
-        // TugasFlutter7.id: (context) => const TugasFlutter7(),
-      },
+      //   // '/home': (context) => TugasFlutter7(),
+      //   // TugasFlutter7.id: (context) => const TugasFlutter7(),
+      // },
     );
   }
 }

@@ -80,6 +80,22 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
       drawer: Drawer(
         child: ListView(
           children: [
+            DrawerHeader(
+              child: Column(
+                children: [
+                  Image(
+                    image: AssetImage("assets/images/altarfagasi.png"),
+                    height: 80,
+                    width: 100,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Altarfagasi",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
             ListTile(
               title: Text("checkbox"),
               onTap: () {
